@@ -67,23 +67,37 @@ const Home = () => {
       </div>
 
       <div className="cryptotable w-full md:max-w-[800px] m-auto bg-gradient-to-b from-[#1a2980] via-[#203a43] to-[#2c5364] rounded-xl shadow-lg shadow-black mt-10">
-        <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-black text-white text-base font-medium">
+        <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-black text-white text-sm md:text-base font-medium">
           <p>#</p>
           <p>Coins</p>
-          <p className=" ">Price</p>
-          <p className="text-center ">24H Change</p>
-          <p className="text-right hidden md:block ">Market Cap</p>
+          <p className="">Price</p>
+          <p className="text-center">24H Change</p>
+          <p className="text-right hidden md:block">Market Cap</p>
         </div>
 
         {displayCoin.slice(0, 10).map((item, index) => (
-          <Link to={`/coin/${item.id}`} key={index} className="last:border-b-0">
-            <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-black text-white text-base">
-              <p>{item.market_cap_rank}</p>
-              <div className="flex items-center gap-2 ">
-                <img src={item.image} alt="" className="w-6 md:w-10" />
-                <p className="truncate">{item.name + " - " + item.symbol}</p>
+          <Link
+            to={`/coin/${item.id}`}
+            key={index}
+            className={`block ${
+              index === displayCoin.slice(0, 10).length - 1
+                ? ""
+                : "border-b border-black"
+            }`}
+          >
+            <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center text-white text-sm md:text-base">
+              <p className="text-sm md:text-base">{item.market_cap_rank}</p>
+              <div className="flex items-center gap-2">
+                <img
+                  src={item.image}
+                  alt=""
+                  className="w-6 md:w-10 mt-1 md:mt-0"
+                />
+                <p className="break-words line-clamp-2 md:line-clamp-1 text-sm md:text-base">
+                  {item.name + " - " + item.symbol}
+                </p>
               </div>
-              <p>
+              <p className="text-sm md:text-base">
                 {currency.symbol} {item.current_price.toLocaleString()}
               </p>
               <p
