@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div className=" w-full min-h-screen bg-gradient-to-b from-blue-500 to-blue-950">
+    <div className=" w-full min-h-screen bg-gradient-to-b from-blue-600 to-blue-950">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

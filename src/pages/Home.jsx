@@ -52,54 +52,53 @@ const Home = () => {
           />
 
           <datalist id="coinlist">
-          {allCoin.map((item, index) => (<option key={index} value={item.name}/>))}
+            {allCoin.map((item, index) => (
+              <option key={index} value={item.name} />
+            ))}
           </datalist>
 
           <button
             type="submit"
-            className="w-full sm:w-auto cursor-pointer border-none bg-slate-700 text-white px-2 py-1 rounded-xl hover:bg-slate-800 transition-all duration-300"
+            className="w-full sm:w-auto cursor-pointer border-none bg-slate-700 text-white px-2 py-1 rounded-xl hover:bg-slate-800 transition-all duration-300 text-lg"
           >
             Search
           </button>
         </form>
       </div>
 
-      <div className="cryptotable w-full md:max-w-[800px] m-auto bg-slate-600 rounded-xl shadow-lg shadow-black mt-10">
-        <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-red-800 text-white text-base font-medium">
+      <div className="cryptotable w-full md:max-w-[800px] m-auto bg-gradient-to-b from-[#1a2980] via-[#203a43] to-[#2c5364] rounded-xl shadow-lg shadow-black mt-10">
+        <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-black text-white text-base font-medium">
           <p>#</p>
           <p>Coins</p>
-          <p className="">Price</p>
-          <p className="text-center">24H Change</p>
-          <p className="text-right hidden md:block">Market Cap</p>
+          <p className=" ">Price</p>
+          <p className="text-center ">24H Change</p>
+          <p className="text-right hidden md:block ">Market Cap</p>
         </div>
 
         {displayCoin.slice(0, 10).map((item, index) => (
-          <Link to={`/coin/${item.id}`} key={index}>
-          <div
-            className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-red-800 text-white last:border-b-0 text-base"
-            key={index}
-          >
-            <p>{item.market_cap_rank}</p>
-            <div className="flex items-center gap-2">
-              <img src={item.image} alt="" className="w-8 md:w-10" />
-              <p className="truncate">{item.name + " - " + item.symbol}</p>
+          <Link to={`/coin/${item.id}`} key={index} className="last:border-b-0">
+            <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-black text-white text-base">
+              <p>{item.market_cap_rank}</p>
+              <div className="flex items-center gap-2">
+                <img src={item.image} alt="" className="w-8 md:w-10" />
+                <p className="truncate">{item.name + " - " + item.symbol}</p>
+              </div>
+              <p>
+                {currency.symbol} {item.current_price.toLocaleString()}
+              </p>
+              <p
+                className={`text-center ${
+                  item.price_change_percentage_24h > 0
+                    ? "text-green-500"
+                    : "text-red-500"
+                }`}
+              >
+                {Math.floor(item.price_change_percentage_24h * 100) / 100}
+              </p>
+              <p className="text-right hidden md:block">
+                {currency.symbol} {item.market_cap.toLocaleString()}
+              </p>
             </div>
-            <p>
-              {currency.symbol} {item.current_price.toLocaleString()}
-            </p>
-            <p
-              className={`text-center ${
-                item.price_change_percentage_24h > 0
-                  ? "text-green-500"
-                  : "text-red-500"
-              }`}
-            >
-              {Math.floor(item.price_change_percentage_24h * 100) / 100}
-            </p>
-            <p className="text-right hidden md:block">
-              {currency.symbol} {item.market_cap.toLocaleString()}
-            </p>
-          </div>
           </Link>
         ))}
       </div>
