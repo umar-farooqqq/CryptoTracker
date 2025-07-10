@@ -24,7 +24,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-between items-center p-4 border-b 2px solid #3c3c3c sm:gap-10 md:gap-10 lg:gap-20 font-semibold font-sans sticky top-0 z-50 bg-blue-600">
       <Link to={`/`}>
-        <img src="/logo.png" alt="logo" />
+        <img src="/logo.png" alt="logo" className="w-[120px] md:w-40 lg:w-full" />
       </Link>
       <ul className="text-white hidden md:flex justify-between items-center gap-10 lg:gap-20">
         <Link to={`/`}>

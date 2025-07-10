@@ -79,8 +79,8 @@ const Home = () => {
           <Link to={`/coin/${item.id}`} key={index} className="last:border-b-0">
             <div className="w-full grid grid-cols-[0.5fr_3fr_1fr_1fr] md:grid-cols-[0.5fr_2fr_1fr_1fr_1.5fr] px-2 md:px-4 py-3 md:py-4 items-center border-b border-black text-white text-base">
               <p>{item.market_cap_rank}</p>
-              <div className="flex items-center gap-2">
-                <img src={item.image} alt="" className="w-8 md:w-10" />
+              <div className="flex items-center gap-2 ">
+                <img src={item.image} alt="" className="w-6 md:w-10" />
                 <p className="truncate">{item.name + " - " + item.symbol}</p>
               </div>
               <p>
